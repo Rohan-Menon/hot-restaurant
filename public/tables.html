@@ -5,16 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Real Time Train Schedule</title>
+    <title>Hot Restaurant</title>
 
+    <!-- link to the style sheet
+    <link rel="stylesheet" href="./assets/css/style.css"> -->
 
+    <!--link to reset css
+    <link rel="stylesheet" href="./assets/css/reset.css"> -->
 
-    <!-- link to bootstrap library -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
+    <!-- link to bootstrap library
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" -->
+    <!-- crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script> -->
 
-    <!--link to firebase -->
-    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"> -->
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -23,9 +40,15 @@
         <h1 class="text-center"> Hot Restaurant</h1>
         <p class="text-center">Current Reservations and Waitlist
         </p>
-    </div>
+        <button type="button" class="btn btn-danger">Make Reservation
+        </button>
+        <button type="button">
+            <span class="glyphicon glyphicon-home"></span>
+        </button>
 
-    <div id="reservations">
+    </div id="reservations">
+
+    <div>
 
     </div>
 
@@ -33,124 +56,6 @@
 
     </div>
 
-
-
-    <!-- link to jquery library -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-
-    <!-- Link to Moment.js should go here -->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-
-
-
-    <script>
-
-	// In this code, jQuery is used to "download" the data from our server
-	// We then dynamically display this content in our table. This is very similar to the group projects you just completed.
-	// It's also very similar to the NYT search application. In fact, I copied a ton of code from there.
-
-	function runTableQuery(){
-
-		// Here we get the location of the root page.
-		// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
-		var currentURL = window.location.origin;
-
-		// The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-		$.ajax({url: currentURL + "/api/tables", method: "GET"})
-			.done(function(tableData) {
-
-				// Here we are logging the URL so we have access to it for troubleshooting
-				console.log("------------------------------------");
-				console.log("URL: " + currentURL + "/api/tables");
-				console.log("------------------------------------");
-
-				// Here we then log the NYTData to console, where it will show up as an object.
-				console.log(tableData);
-				console.log("------------------------------------")
-
-				// Loop through and display each of the customers
-				for (var i=0; i<JSON.parse(tableData).length; i++){
-
-                    console.log("inside for loop");
-
-					// Create the HTML Well (Sectionx) and Add the table content for each reserved table
-					var tableSection = $("<div>");
-					tableSection.addClass('well');
-					tableSection.attr('id', 'tableWell-' + i+1)
-					$('#reservations').append(tableSection);
-
-					var tableNumber = i + 1;
-
-
-					// Then display the remaining fields in the HTML (Section Name, Date, URL)
-					$("#reservations").append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + tableData[i].id + "</h2>");
-				}
-			});
-	}
-
-	// function runWaitListQuery(){
-
-	// 	// Here we get the location of the root page.
-	// 	// We use this instead of explicitly saying the URL is localhost:3001 because the url will change when we deploy.
-	// 	var currentURL = window.location.origin;
-
-	// 	// The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-	// 	$.ajax({url: currentURL + "/api/waitlist", method: "GET"})
-	// 		.done(function(waitlistData) {
-
-	// 			// Here we are logging the URL so we have access to it for troubleshooting
-	// 			console.log("------------------------------------");
-	// 			console.log("URL: " + currentURL + "/api/waitlist");
-	// 			console.log("------------------------------------");
-
-	// 			// Here we then log the NYTData to console, where it will show up as an object.
-	// 			console.log(waitlistData);
-	// 			console.log("------------------------------------")
-
-	// 			// Loop through and display each of the customers
-	// 			for (var i=0; i<waitlistData.length; i++){
-
-	// 				// Create the HTML Well (Section) and Add the table content for each reserved table
-	// 				var waitlistSection = $("<div>");
-	// 				waitlistSection.addClass('well');
-	// 				waitlistSection.attr('id', 'waitlistWell-' + i+1)
-	// 				$('#waitlistSection').append(waitlistSection);
-
-	// 				var tableNumber = i + 1;
-
-	// 				// Then display the remaining fields in the HTML (Section Name, Date, URL)
-	// 				$("#waitlistWell-"+ i+1).append('<h2><span class="label label-primary">' + tableNumber + "</span> | " + waitlistData[i].customerID + "</h2>");
-	// 			}
-	// 		});
-	// }
-
-	// This function resets all of the data in our tables. This is intended to let you restart a demo.
-	// function clearTable(){
-
-	// 	var currentURL = window.location.origin;
-	// 	$.ajax({url: currentURL + "/api/clear", method: "POST"})
-
-	// }
-
-	// $("#clear").on('click', function(){
-	// 	alert("Clearing...");
-	// 	clearTable();
-
-	// 	// Refresh the page after data is cleared
-	// 	location.reload();
-	// })
-
-
-	// Run Queries!
-	// ==========================================
-	runTableQuery();
-    // runWaitListQuery();
-    
-</script>
 
 
 

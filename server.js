@@ -32,7 +32,7 @@ var waitList;
 // Add the application routes
 
 require( './routes/apiRoutes')(app, reservations, waitList);
-// require( './routing/htmlRoutes')(app);
+require( './routes/htmlRoutes')(app);
 
 // Starts our server, 3001
 app.listen(PORT, function () {

@@ -19,9 +19,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.text());
 
 //Static file setup
+app.set('views', __dirname + '/public/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.use(express.static(__dirname + '/public'));
+app.use('/css',express.static(__dirname + '/public/assets/style.css'));
 app.use('/css/bootstrap',express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css'));
 app.use('/js/bootstrap',express.static(__dirname + '/node_modules/bootstrap/dist/js/bootstrap.bundle.js'));
+
 var reservations = [
     {
         name: "dummydata",

@@ -1,5 +1,4 @@
 
-// Export API routes
 module.exports = function(app, reservations, waitList) {
     console.log('export worked html');
 

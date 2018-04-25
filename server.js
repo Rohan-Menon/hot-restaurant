@@ -1,26 +1,27 @@
 //Dependencies
 var express = require("express");
-var $ = require('jquery');
 global.jQuery = require('jquery');
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+global.$ = global.jQuery;
 var bodyParser = require("body-parser");
 var path = require("path");
-var http = require("http");
 var fs = require("fs");
+
 
 
 //Express Setup 
 var app = express();
+var http = require('http').Server(app);
 var PORT = process.env.PORT || 3001;
 
-app.use(express.static(__dirname + '/public'));
 //Body Parser Setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 
-
+//Static file setup
+app.use(express.static(__dirname + '/public'));
+app.use('/css/bootstrap',express.static(__dirname + '/node_modules/bootstrap/dist/css/bootstrap.css'));
+app.use('/js/bootstrap',express.static(__dirname + '/node_modules/bootstrap/dist/js/bootstrap.bundle.js'));
 var reservations = [
     {
         name: "dummydata",

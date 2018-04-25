@@ -1,8 +1,5 @@
 // dependencies
 var path = require('path');
-var jquery = require('jquery');
-require('bootstrap');
-require('bootstrap/dist/css/bootstrap.css');
 
 // HTML routes
 module.exports = function(app, reservations) {

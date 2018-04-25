@@ -1,10 +1,14 @@
-global.jQuery = global.$ = require('jquery');
 //Dependencies
 var express = require("express");
+var $ = require('jquery');
+global.jQuery = require('jquery');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var bodyParser = require("body-parser");
 var path = require("path");
 var http = require("http");
 var fs = require("fs");
+
 
 //Express Setup 
 var app = express();

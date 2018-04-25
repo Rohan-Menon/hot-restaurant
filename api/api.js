@@ -3,10 +3,10 @@
 var users = [];
 
 var user = {
-    name:$('#name').val().trim(),
-    phone:$('#phone').val().trim(),
-    email:$('#email').val().trim(),
-    id:$('#id').val().trim(),
+    name:$('#username').val().trim(),
+    phone:$('#userphone').val().trim(),
+    email:$('#useremail').val().trim(),
+    id:$('#userid').val().trim(),
 };
 
 users.push(user);

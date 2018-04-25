@@ -18,12 +18,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 
+
+var reservations = [
+    {
+        name: "dummydata"
+    }
+];
+
+var waitList;
+
 //var server = http.createServer(handleRequest);
 
 // Add the application routes
 
-require( './routing/apiRoutes')(app);
-require( './routing/htmlRoutes')(app);
+require( './routes/apiRoutes')(app, reservations, waitList);
+// require( './routing/htmlRoutes')(app);
 
 // Starts our server, 3001
 app.listen(PORT, function () {
@@ -37,17 +46,6 @@ app.listen(PORT, function () {
 
 
 
-var reservations = [
-    {
-        name: "dummydata"
-    }
-];
-
-for(var i = 0; i<reservations.length; i++){
-
-
-    $("#reservations").append("<h2>"+ i + " | "+reservation.name);
-}
 
 
 

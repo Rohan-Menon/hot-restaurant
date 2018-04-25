@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Rohan-Menon/hot-restaurant/issues"
   },
-  "homepage": "https://github.com/Rohan-Menon/hot-restaurant#readme"
+  "homepage": "https://github.com/Rohan-Menon/hot-restaurant#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  }
 }

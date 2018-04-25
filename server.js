@@ -8,7 +8,7 @@ var fs = require("fs");
 
 //Express Setup 
 var app = express();
-var PORT = 3001;
+var PORT = process.env.PORT || 3001;
 
 app.use(express.static(__dirname + '/public'));
 //Body Parser Setup

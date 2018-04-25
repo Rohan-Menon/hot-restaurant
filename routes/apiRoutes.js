@@ -3,7 +3,7 @@ module.exports = function(app, reservations, waitList) {
 
    
     app.get('/api/tables', function(req, res) {
-        res.send(JSON.stringify(reservations));
+        res.send(reservations);
     });
 
 

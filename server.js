@@ -1,8 +1,4 @@
-
-
-
-
-//Dependencies 
+//Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
@@ -13,6 +9,7 @@ var fs = require("fs");
 var app = express();
 var PORT = 3001;
 
+app.use(express.static(__dirname + '/public'));
 //Body Parser Setup
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

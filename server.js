@@ -21,9 +21,12 @@ app.use(bodyParser.text());
 
 var reservations = [
     {
-        name: "dummydata"
+        name: "dummydata",
+        id: "dummyid"
     }
 ];
+
+
 
 var waitList;
 
@@ -32,7 +35,8 @@ var waitList;
 // Add the application routes
 
 require( './routes/apiRoutes')(app, reservations, waitList);
-// require( './routing/htmlRoutes')(app);
+require( './routes/htmlRoutes')(app, reservations);
+
 
 // Starts our server, 3001
 app.listen(PORT, function () {

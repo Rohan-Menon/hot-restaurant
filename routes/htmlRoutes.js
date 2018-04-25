@@ -1,9 +1,5 @@
 // dependencies
 var path = require('path');
-var headContent = `
-    <link rel="stylesheet" href="/css/bootstrap">
-    <script src="/js/bootstrap"></script>
-`;
 
 // HTML routes
 module.exports = function(app, reservations) {
@@ -11,7 +7,7 @@ module.exports = function(app, reservations) {
 
 
     app.get('/', function(req, res) {
-        res.render('tables.html', {head:headContent});
+        res.render('tables.html', {title:'Home'});
 
     });
     // app.get('/tables', function(req, res) {
@@ -22,8 +18,10 @@ module.exports = function(app, reservations) {
     //     res.sendFile(path.join(__dirname, '../public/survey.html'));
     // });
 
-    app.get('/tables', function(req, res) {
-        res.render('tables.html', {head:headContent});
+    app.get('/tables/:name', function(req, res) {
+        var params = {title:'Reservations'};
+        if(req.params.name) params.name = req.params.name;
+        res.render('tables.html', params);
     });
 
     app.get('/reserve', function(req, res) {
